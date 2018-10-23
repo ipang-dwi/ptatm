@@ -47,7 +47,7 @@
   <div class="login-box-body">
     <p align="center" class="login-box-msg">Silahkan login untuk melanjutkan</p>
 
-    <form method="post" target="_self">
+    <form method="post" action="cek.php">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Username" name="user" id="user" required />
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -73,38 +73,18 @@
 </div>
 <!-- /.login-box -->
 
-<?php
-	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-		if($_POST && $_POST['user']!='' && $_POST['pass']!=''){
-			$result = $mysqli->query("select * from user WHERE user = '".$_POST['user']."' and pass = '".hashku(1,$_POST['pass'])."'");
-			if($result->num_rows != 0){
-				while ($row = $result->fetch_assoc()) {
-					$_SESSION['login'] = 'KJHAbkfase86234809701234hgvbKHJGVYH%$&^$%&$^*';
-					$_SESSION['user'] = $row['user'];
-					$_SESSION['pass'] = $row['pass'];
-					$_SESSION['level'] = $row['level'];
-					$_SESSION['since'] = $row['since'];
-					$_SESSION['foto'] = "uploads/".$row['foto'];
-				}
-				header('Location: dashboard-ui.php');
-			}
-			else { ?>
-				<script>
+			<?php if (isset($_SESSION['error'])&&$_SESSION['error']==1){ ?>
+			<script>
 				  swal({
 					  title: 'Login Error!',
 					  text: 'Maaf Username atau Password salah..',
 					  type: 'error',
 					  confirmButtonText: 'OK'
 				  })
-				</script>
-	<?php	}
-		}
-		if(@$_POST['user']=='')
-			echo " username harus diisi..";
-		if(@$_POST['pass']=='')
-			echo " password harus diisi..";
-	}
-?>
+			</script>
+			<?php 
+			$_SESSION['error']=0;
+			} ?>
 
 <!-- jQuery 2.2.0 -->
 <script src="lte/plugins/jQuery/jQuery-2.2.0.min.js"></script>
