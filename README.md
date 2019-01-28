@@ -1,4 +1,7 @@
 # ptatm
+
+<img src="https://img.shields.io/github/license/ipang-dwi/xdesktop.svg" /> <img src="https://img.shields.io/badge/lab-firstplato.com-red.svg" />
+
 Sistem Pengambil Keputusan (SPK) / DSS berbasis Web metode SAW dengan Sub Kriteria dan Multi Login System - www.firstplato.com
 
 > Preview dan demo cekidot https://lab.firstplato.com/ptatm dan https://www.youtube.com/watch?v=uOeHJvnla4I
